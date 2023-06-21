@@ -1,0 +1,86 @@
+.container {
+  font-family: Arial;
+}
+
+/* Rest of the CSS code */
+
+
+.card-collection {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+}
+
+.card {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  perspective: 800px;
+  transform-style: preserve-3d;
+}
+
+.card.flipped .card-content {
+  transform: rotateY(180deg);
+}
+
+.card-text {
+  margin-bottom: 10px;
+  margin-right: 20px;
+}
+
+.card-img-left {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.card-image {
+  flex: 0 0 auto;
+  width: 100px;
+  padding: 10px;
+}
+
+.card-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  
+  margin-top: 10px;	
+  margin-bottom: 10px;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.front-content {
+  transform: rotateY(0deg);
+  opacity: 1;
+}
+
+.back-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotateY(-180deg);
+  transform-origin: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.card.flipped .front-content {
+  transform: rotateY(180deg);
+  opacity: 0;
+}
+
+.card.flipped .back-content {
+  transform: rotateY(-180deg);
+}
+
+.card.standout {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.16), 0 0 0 3px rgba(51, 51, 51, 0.5);
+}
