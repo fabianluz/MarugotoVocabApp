@@ -1,11 +1,15 @@
-import './App.css'
+import "./App.css";
 import { useState } from "react";
-import Header from './Header'
-import Footer from './Footer'
-import Words from './Words'
+import Header from "./Header";
+import Footer from "./Footer";
+import Words from "./Words";
+import GroupedWordsSelected from "./GroupedWordsSelected";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Nav from "./Nav";
+import NotFound from "./NotFound";
+
 
 function App() {
-
   const [selectedType, setType] = useState("View All");
 
   const [words, setWords] = useState([
@@ -244,16 +248,42 @@ function App() {
   };
 
   return (
-    <div>
-      <Header selectedType={selectedType} wordsCount={words.filter((words) => words.type === selectedType).length} />      
-      <Words words={words}
+    <Router>
+      <Nav />
+      <Header
+        selectedType={selectedType}
+        wordsCount={words.filter((words) => words.type === selectedType).length}
+      />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Words
+              words={words}
               selectedType={selectedType}
               handleTypeSelectionChange={handleTypeSelectionChange}
               handleCardFlip={handleCardFlip}
-              flippedCards={flippedCards}/>
-      <Footer/>
-    </div>
-  )
+              flippedCards={flippedCards}
+            />
+          }
+        ></Route>
+        <Route
+  path="/GroupedWordsChapterOne"
+  element={
+    <GroupedWordsSelected 
+      words={words} 
+      handleCardFlip={handleCardFlip}
+      flippedCards={flippedCards}
+    />
+  }
+></Route>
+
+
+        <Route path="/*" element={<NotFound />}></Route>
+      </Routes>
+      <Footer />
+    </Router>
+  );
 }
 
-export default App
+export default App;

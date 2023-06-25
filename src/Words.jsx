@@ -4,12 +4,6 @@ import hiragana from "./images/hiragana.jpg";
 
 const Words = ({words, selectedType, handleTypeSelectionChange, handleCardFlip, flippedCards}) => {
 
-
-  
-
-
-
-
  
 
   return (
@@ -47,6 +41,7 @@ const Words = ({words, selectedType, handleTypeSelectionChange, handleCardFlip, 
                   cursor: "pointer",
                   display: "flex",
                   flexDirection: "row",
+                  minWidth: "200px",
                 }}
                 onClick={() => handleCardFlip(word.id)}
               >
